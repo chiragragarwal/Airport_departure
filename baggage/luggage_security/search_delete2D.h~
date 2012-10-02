@@ -1,0 +1,15 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int **delete(int **contents, int i, int j, int nBags)
+{
+	int p = j;
+	while(contents[i][p] != -1 || p!=9)
+	{
+		contents[i][p] = contents[i][p+1];
+		p++;
+	}
+	contents[i][p] = -1;	//-1 to indicate a blank position
+	return contents;
+	
+}

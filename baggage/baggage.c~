@@ -1,0 +1,55 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+#include "../VARIABLES.h"
+//#include "luggage_security/LUGGAGE.h"
+//#include "weight/WEIGHT.h"
+//#include "boarding_pass/BOARDING_PASS.h"
+
+void main()
+{
+	int i,j,t,nBags;
+		
+	FILE *f = fopen("baggage_ip.txt","r");
+	
+	char ticketNo[10] ;
+	fscanf(f,"%s",ticketNo);
+	
+	fscanf(f,"%d",&nBags);
+	printf("\nBags = %d\n",nBags);
+	
+	int weight[nBags], **contents;
+	int retL, penalty, retB;
+	//char ticketNo[10] = {"ABCD123"};
+	for(i=0;i<nBags;i++)
+	{
+		fscanf(f,"%d",&weight[i]);
+		printf("Weight[%d] = %d\n",i,weight[i]);	
+	}
+	
+	contents = malloc(nBags*sizeof(int *));
+	
+	for(i=0;i<nBags;i++)
+		contents[i] = (int *)malloc(10*sizeof(int));
+
+	for(i=0;i<nBags;i++)
+	{
+		for(j=0;j<10;j++)
+		{
+			fscanf(f,"%d",&t);
+			contents[i][j] = t;
+			printf("%d ",contents[i][j]);
+		}
+		printf("\n");
+	}
+	fclose(f);
+	
+	retL = luggage_security(nBags, weight, contents);	//check for liquids and explosives
+	penalty = weight_check(nBags,weight);				//check weight for penalty charges
+	retB = boarding_pass(ticketNo);	//add other stuff later
+	
+	printf("Penalty = $%d \n",penalty);
+	printf("Ticket No. = %s \n",ticketNo);
+	
+	return;
+}
