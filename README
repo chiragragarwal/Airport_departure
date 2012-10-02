@@ -74,15 +74,3 @@ Thus every process is stopped and the airport can now send the first passenger t
 
 The rest of the signaling is carried out as explained in the question.
 
--------------------------------------------------------------------------------------------
-
-WHAT I COULDN't DO :
-
-I couldn't properly sychronize passengers going into the restroom and the cafe at their own will continuously.
-At present, every passenger either goes to Cafe or Restroom, but does not cycle through them as expected.
-
-REASON :
-
-I genuinely fell short of time as I had the (successful)Microsoft interviews for Summer Internship and my entire 2 days were wasted.
-I would've tried to implement a while loop inside the Waiting Lounge to move the passengers to and fro until the last passenger arrives.
-
